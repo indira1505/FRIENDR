@@ -1,14 +1,19 @@
 const express = require('express');
 const usersRouter = require('./routers/users.router')
+const postsRouter = require('./routers/posts.router')
+//TODO remove
+const mongoose = require('mongoose');
+
 
 const app = express();
-const port = 3009
+const port = 3008
 
 // pentru a vedea cererea json
 app.use(express.json());
 
 //Routers
 app.use('/users', usersRouter);
+app.use('/posts', postsRouter);
 
 //cerere get
 /*app.get('/', (req, res) => {
@@ -26,4 +31,11 @@ app.use('/users', usersRouter);
 
 app.listen(port, () => {
     console.log(`Example app is listening at ${port}`);
+    // TODO remove
+    mongoose
+        .connect('mongodb+srv://Indira:anaaremere@cluster0.gmenhrh.mongodb.net/friendr?retryWrites=true&w=majority&appName=Cluster0')
+        .then(() => {
+          console.log("connected to db and listening");
+        })
+        .catch((err) => console.error(err));
 })
