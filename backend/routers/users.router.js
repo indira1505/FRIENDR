@@ -16,14 +16,14 @@ router.post('/', usersController.createUsers)
 //     res.status(201); // statusul returnat. nu e obligatoriu
 //     res.send("Successfully created!");
 // })
-router.get('/:id', usersController.getUser);
+router.get('/:userName', usersController.getUser);
 
 // router.get('/', (req, res) => { 
 //     const userId = req.query.id;
 //     res.status(404).send();
 // })
 
-router.delete('/', usersController.deleteUser)
+router.delete('/:id', usersController.deleteUser)
 //steregre users. userul e parametru, nu mai e cu '?'
 // router.delete('/:id', (req, res) => { 
 //     const reqUserId = req.params.id;

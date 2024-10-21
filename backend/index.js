@@ -1,16 +1,16 @@
 const express = require('express');
 const usersRouter = require('./routers/users.router')
 const postsRouter = require('./routers/posts.router')
-//TODO remove
-const mongoose = require('mongoose');
 
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
-const port = 3008
+const port = 3010
 
 // pentru a vedea cererea json
 app.use(express.json());
-
+app.use(cors());
 //Routers
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);

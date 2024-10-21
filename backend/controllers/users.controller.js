@@ -4,9 +4,14 @@ const usersService = require("../services/user.service");
 const usersController = {
     getUser: async (req, res) => {
         console.log("Reached GET user controller");
-        const userId = req.params.id
-        console.log(userId);
-        const userObj = await usersService.getUserById(userId);
+        const userName = req.params.userName
+        console.log(userName);
+        const userObj = await usersService.getUserByUsername(userName);
+        if(!userObj)
+        {
+            res.status(404).send();
+            return;
+        }
         res.status(200).send(userObj);
     },
 
@@ -29,6 +34,7 @@ const usersController = {
         res.status(201).send("User created successfully");
     },
     deleteUser: async (req, res) => {
+        const userId = req.params.id;
         console.log(`Deleted user with id: ${userId}`);
         usersService.deleteUsers(userId);
     }
